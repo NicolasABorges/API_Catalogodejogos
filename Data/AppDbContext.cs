@@ -1,34 +1,13 @@
 using CatalogoDeJogos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CatalogoDeJogos.Data;
 
-public class AppDbContext
+public class AppDbContext : DbContext
 {
-    public List<Jogo> Jogos { get; set; } = new()
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        new Jogo
-        {
-            Id = 1,
-            Nome = "Minecraft",
-            Genero = "Sandbox",
-            Plataforma = "PC",
-            Preco = 99.90m
-        },
-        new Jogo
-        {
-            Id = 2,
-            Nome = "Marvel Rivals",
-            Genero = "Ação",
-            Plataforma = "PC",
-            Preco = 0m
-        },
-        new Jogo
-        {
-            Id = 3,
-            Nome = "The Witcher 3",
-            Genero = "RPG",
-            Plataforma = "PC",
-            Preco = 149.90m
-        }
-    };
+    }
+
+    public DbSet<Jogo> Jogos => Set<Jogo>();
 }
